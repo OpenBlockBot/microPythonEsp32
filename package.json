@@ -41,7 +41,6 @@
     "connectionSmallIconURL": "./assets/microPythonEsp32-small.svg",
     "main": "./src/microPythonEsp32.js",
     "translations": "./src/translations.js",
-    "firmwares": "./firmwares",
     "programMode": ["upload"],
     "programLanguage": ["block", "microPython"],
     "tags": ["microPython"],
