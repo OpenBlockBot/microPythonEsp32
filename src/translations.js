@@ -24,7 +24,7 @@ export default {
             'microPythonEsp32.description': 'Wi-Fi & Bluetooth control board with rich functions.'
         },
         'zh-cn': {
-            'microPythonEsp32.description': 'Wi-Fi & Bluetooth control board with rich functions.'
+            'microPythonEsp32.description': '功能强大且带有 Wi-Fi 和蓝牙的控制板。'
         },
         'zh-tw': {
             'microPythonEsp32.description': 'Wi-Fi & Bluetooth control board with rich functions.'
