@@ -31,13 +31,12 @@ const SERIAL_CONFIG = {
  */
 const DIVECE_OPT = {
     type: 'microPython',
-    chip: 'esp32',
+    fqbn: 'esp32:esp32',
     baud: {
         darwin: '460800',
         linux: '460800',
         win32: '921600'
     },
-    firmware: 'microPython-standard-esp32.bin',
     dtr: false,
     rts: false
 };
@@ -670,7 +669,7 @@ class OpenBlockMicroPythonEsp32Device {
                     {
                         opcode: 'setPinMode',
                         text: formatMessage({
-                            id: 'microPythonEsp32.pins.esp32SetPinMode',
+                            id: 'microPythonEsp32.pins.setPinMode',
                             default: 'set pin [PIN] mode [MODE]',
                             description: 'MicroPython esp32 set pin mode'
                         }),
@@ -691,7 +690,7 @@ class OpenBlockMicroPythonEsp32Device {
                     {
                         opcode: 'setDigitalOutput',
                         text: formatMessage({
-                            id: 'microPythonEsp32.pins.esp32SetDigitalOutput',
+                            id: 'microPythonEsp32.pins.setDigitalOutput',
                             default: 'set digital pin [PIN] out [LEVEL]',
                             description: 'MicroPython esp32 set digital pin out'
                         }),
@@ -712,7 +711,7 @@ class OpenBlockMicroPythonEsp32Device {
                     {
                         opcode: 'setPwmOutput',
                         text: formatMessage({
-                            id: 'microPythonEsp32.pins.esp32SetPwmOutput',
+                            id: 'microPythonEsp32.pins.setPwmOutput',
                             default: 'set pwm pin [PIN] out [OUT]',
                             description: 'MicroPython esp32 set pwm pin out'
                         }),
@@ -732,7 +731,7 @@ class OpenBlockMicroPythonEsp32Device {
                     {
                         opcode: 'setDACOutput',
                         text: formatMessage({
-                            id: 'microPythonEsp32.pins.esp32SetDACOutput',
+                            id: 'microPythonEsp32.pins.setDACOutput',
                             default: 'set dac pin [PIN] out [OUT]',
                             description: 'MicroPython esp32 set dac pin out'
                         }),
@@ -753,7 +752,7 @@ class OpenBlockMicroPythonEsp32Device {
                     {
                         opcode: 'readDigitalPin',
                         text: formatMessage({
-                            id: 'microPythonEsp32.pins.esp32ReadDigitalPin',
+                            id: 'microPythonEsp32.pins.readDigitalPin',
                             default: 'read digital pin [PIN]',
                             description: 'MicroPython esp32 read digital pin'
                         }),
@@ -769,7 +768,7 @@ class OpenBlockMicroPythonEsp32Device {
                     {
                         opcode: 'readAnalogPin',
                         text: formatMessage({
-                            id: 'microPythonEsp32.pins.esp32ReadAnalogPin',
+                            id: 'microPythonEsp32.pins.readAnalogPin',
                             default: 'read analog pin [PIN]',
                             description: 'MicroPython esp32 read analog pin'
                         }),
@@ -783,9 +782,9 @@ class OpenBlockMicroPythonEsp32Device {
                         }
                     },
                     {
-                        opcode: 'esp32ReadTouchPin',
+                        opcode: 'readTouchPin',
                         text: formatMessage({
-                            id: 'microPythonEsp32.pins.esp32ReadTouchPin',
+                            id: 'microPythonEsp32.pins.readTouchPin',
                             default: 'read touch pin [PIN]',
                             description: 'MicroPython esp32 read touch pin'
                         }),
@@ -824,7 +823,7 @@ class OpenBlockMicroPythonEsp32Device {
 
                         opcode: 'attachInterrupt',
                         text: formatMessage({
-                            id: 'microPythonEsp32.pins.esp32AttachInterrupt',
+                            id: 'microPythonEsp32.pins.attachInterrupt',
                             default: 'attach interrupt pin [PIN] mode [MODE] executes',
                             description: 'MicroPython esp32 attach interrupt'
                         }),
@@ -842,6 +841,25 @@ class OpenBlockMicroPythonEsp32Device {
                             }
                         },
                         programMode: [ProgramModeType.UPLOAD]
+                    },
+                    // Legacy aliases, kept for backward compatibility.
+                    {
+                        opcode: 'esp32ReadTouchPin',
+                        text: formatMessage({
+                            id: 'microPythonEsp32.pins.readTouchPin',
+                            default: 'read touch pin [PIN]',
+                            description: 'MicroPython esp32 read touch pin'
+                        }),
+                        blockType: BlockType.REPORTER,
+                        arguments: {
+                            PIN: {
+                                type: ArgumentType.STRING,
+                                menu: 'touchPins',
+                                defaultValue: Pins.IO4
+                            }
+                        },
+                        hideFromPalette: true,
+                        func: 'readTouchPin'
                     }
                 ],
                 menus: {
